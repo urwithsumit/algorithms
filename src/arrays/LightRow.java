@@ -1,6 +1,15 @@
 package arrays;
-import java.io.*;
-import java.util.*;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+/**
+ * Switches are against Columns. Given the number of times switches can be
+ * flipped, find the maximum number of rows that will have no lights off.
+ * 
+ * @author sumitkumar
+ * 
+ */
 
 class LightRow {
 	private static int rows;
@@ -35,6 +44,12 @@ class LightRow {
 
 	}
 
+	/**
+	 * Method to toggle the light when a switch is pressed.
+	 * 
+	 * @param index
+	 * @param row
+	 */
 	static void switchLight(int index, char[][] row) {
 		for (int i = 0; i < rows; i++) {
 			if ('N' == row[i][index]) {
@@ -45,11 +60,17 @@ class LightRow {
 		}
 	}
 
+	/**
+	 * Find which column has maximum number of OFF lights
+	 * 
+	 * @param row
+	 * @return
+	 */
 	private static int findSwitchToFlip(char[][] row) {
-		
+
 		int result = 0;
 		int index = -1;
-		
+
 		for (int i = 0; i < columns; i++) {
 			int count = 0;
 			for (int j = 0; j < rows; j++) {
@@ -57,16 +78,22 @@ class LightRow {
 					++count;
 				}
 			}
-			
-			if(result < count){
+
+			if (result < count) {
 				result = count;
 				index = i;
 			}
 		}
-		
+
 		return index;
 	}
 
+	/**
+	 * Finds the count of rows that have all their Lights ON
+	 * 
+	 * @param row
+	 * @return
+	 */
 	private static int totalLightedRows(char[][] row) {
 		int lightedRow = 0;
 		for (int i = 0; i < rows; i++) {
@@ -76,11 +103,11 @@ class LightRow {
 					++count;
 				}
 			}
-			
-			if(count == columns)
+
+			if (count == columns)
 				++lightedRow;
 		}
-		
+
 		return lightedRow;
 	}
 }

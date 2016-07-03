@@ -3,7 +3,21 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
-
+/**
+ * Dijasktra's Algorithm for Single Source Shortest Path.
+ * Sample input:
+ * 
+ * 1
+ * 4 4
+ * 1 2 24
+ * 1 4 20
+ * 3 1 3
+ * 4 3 12
+ * 1
+ * 
+ * @author sumitkumar
+ *
+ */
 public class DijkastrasSingleSourceShortestPathAlgoImpl {
 	private PriorityQueue<Node>[] graph;
 	private int[] dist; // holds the calculated distances
@@ -28,8 +42,8 @@ public class DijkastrasSingleSourceShortestPathAlgoImpl {
 		}
 
 		@Override
-		public int compareTo(Node arg0) {
-			boolean flag = this.end > ((Node) arg0).end;
+		public int compareTo(Node node) {
+			boolean flag = this.end > ((Node) node).end;
 			return flag ? -1 : 1;
 		}
 	}
@@ -47,6 +61,12 @@ public class DijkastrasSingleSourceShortestPathAlgoImpl {
 		}
 	}
 
+	/**
+	 * Refer to https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+	 * for algorithm
+	 * 
+	 * @param source
+	 */
 	public void dijakstra(int source) {
 		dist[source] = 0;
 		while (!queue.isEmpty()) {
@@ -96,6 +116,7 @@ public class DijkastrasSingleSourceShortestPathAlgoImpl {
 					}
 				}
 			}
+			
 			System.out.println("");
 		}
 	}
