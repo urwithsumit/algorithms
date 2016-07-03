@@ -1,8 +1,10 @@
 package graphs;
+
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
+
 /**
  * Dijasktra's Algorithm for Single Source Shortest Path.
  * Sample input:
@@ -16,7 +18,7 @@ import java.util.Scanner;
  * 1
  * 
  * @author sumitkumar
- *
+ * 
  */
 public class DijkastrasSingleSourceShortestPathAlgoImpl {
 	private PriorityQueue<Node>[] graph;
@@ -116,7 +118,7 @@ public class DijkastrasSingleSourceShortestPathAlgoImpl {
 					}
 				}
 			}
-			
+
 			System.out.println("");
 		}
 	}
