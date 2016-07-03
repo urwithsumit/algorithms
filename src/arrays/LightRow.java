@@ -1,0 +1,86 @@
+package arrays;
+import java.io.*;
+import java.util.*;
+
+class LightRow {
+	private static int rows;
+	private static int columns;
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		String str = in.readLine();
+		String[] rowle = str.split(",");
+
+		rows = rowle.length;
+		columns = rowle[0].length();
+
+		char[][] row = new char[rows][columns];
+		for (int i = 0; i < rowle.length; i++) {
+			row[i] = rowle[i].toCharArray();
+		}
+
+		int flip = Integer.parseInt(in.readLine().trim());
+
+		while (flip > 0) {
+			int index = findSwitchToFlip(row);
+			if (index > -1) {
+				switchLight(index, row);
+				flip--;
+			} else {
+				break;
+			}
+		}
+
+		System.out.println(totalLightedRows(row));
+
+	}
+
+	static void switchLight(int index, char[][] row) {
+		for (int i = 0; i < rows; i++) {
+			if ('N' == row[i][index]) {
+				row[i][index] = 'Y';
+			} else {
+				row[i][index] = 'N';
+			}
+		}
+	}
+
+	private static int findSwitchToFlip(char[][] row) {
+		
+		int result = 0;
+		int index = -1;
+		
+		for (int i = 0; i < columns; i++) {
+			int count = 0;
+			for (int j = 0; j < rows; j++) {
+				if ('N' == row[j][i]) {
+					++count;
+				}
+			}
+			
+			if(result < count){
+				result = count;
+				index = i;
+			}
+		}
+		
+		return index;
+	}
+
+	private static int totalLightedRows(char[][] row) {
+		int lightedRow = 0;
+		for (int i = 0; i < rows; i++) {
+			int count = 0;
+			for (int j = 0; j < columns; j++) {
+				if ('Y' == row[i][j]) {
+					++count;
+				}
+			}
+			
+			if(count == columns)
+				++lightedRow;
+		}
+		
+		return lightedRow;
+	}
+}
