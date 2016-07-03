@@ -14,8 +14,7 @@ public class BestProfitShare {
 		int[] a = { 2, 4, 3, 6, 1, 2, 3, 9, 10, 0, 20, 3, 4, 1, 100, 99 };
 
 		if (a.length < 2) {
-			throw new IllegalArgumentException(
-					"Array size less than 2. Cannot evaluate profit");
+			throw new IllegalArgumentException("Array size less than 2. Cannot evaluate profit");
 		}
 
 		int min_price = a[0];
@@ -36,8 +35,7 @@ public class BestProfitShare {
 			}
 		}
 
-		System.out.println("Max Profit: "
-				+ Math.max(profit, (max_price - min_price)));
+		System.out.println("Max Profit: " + Math.max(profit, (max_price - min_price)));
 
 	}
 
