@@ -57,7 +57,7 @@ public class DisjointUnionSet<S extends Comparable<S>> {
 	 */
 	public Node<S> find(S val) {
 		Node<S> node = map.get(val);
-		
+
 		if (node.parent != node) {
 			node.parent = find(node.parent.val);
 		}

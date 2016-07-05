@@ -6,7 +6,7 @@ import java.util.Queue;
 import java.util.Scanner;
 
 /**
- * Prim's Algorithm using adjacency List and Priority Queue 
+ * Prim's Algorithm using adjacency List and Priority Queue
  * to find the minimum spanning tree.
  * 
  * 

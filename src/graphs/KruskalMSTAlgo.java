@@ -146,13 +146,13 @@ public class KruskalMSTAlgo {
 	 * @param source
 	 */
 	public void kruksalMST(int source) {
-		
+
 		// Source will be added with a weight of zero and start/end would be the source itself.
 		queue.add(new Edge(source, source, 0));
 
 		while (!queue.isEmpty()) {
 			Edge node = queue.poll();
-			
+
 			// If the start and end vertex does not belong to the same set.
 			// Than such as edge will be counted for the MST
 			if (find(node.start) != find(node.end)) {

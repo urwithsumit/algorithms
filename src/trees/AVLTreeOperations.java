@@ -68,7 +68,7 @@ public class AVLTreeOperations {
 			root.val = val;
 			return root;
 		}
-		
+
 		// Node node;
 		if (root.val > val) {
 			root.left = insert(root.left, val);
