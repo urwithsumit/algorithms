@@ -31,14 +31,13 @@ public class KruskalMSTAlgo {
 
 	class Node {
 		int val;
-		Node parent;
 		int rank;
-		int size;
+		Node parent;
 
 		public Node(int val) {
 			this.val = val;
-			this.parent = this;
 			this.rank = 0;
+			this.parent = this;
 		}
 	}
 
@@ -112,8 +111,11 @@ public class KruskalMSTAlgo {
 
 		@Override
 		public int compareTo(Edge node) {
-			boolean flag = this.wt > ((Edge) node).wt;
-			return flag ? 1 : -1; // V. IMP: return in the increasing order of weight
+			return (this.wt > ((Edge) node).wt) ? 1 : -1; // V. IMP: return in the increasing order of weight
+		}
+
+		public String toString() {
+			return String.valueOf(this.wt);
 		}
 	}
 
@@ -175,7 +177,7 @@ public class KruskalMSTAlgo {
 		}
 
 		int source = scan.nextInt();
-
+		System.out.println("Queue => " + sol.queue.toString());
 		sol.kruksalMST(source);
 
 		System.out.println(sol.cost);

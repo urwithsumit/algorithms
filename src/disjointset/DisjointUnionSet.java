@@ -100,7 +100,7 @@ public class DisjointUnionSet<S extends Comparable<S>> {
 			} else {
 				// Node have same rank, hence Rank will increase by 1.
 				yNode.parent = xNode;
-				xNode.rank = xNode.rank + 1;
+				++xNode.rank;
 			}
 		}
 	}

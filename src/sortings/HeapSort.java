@@ -15,7 +15,7 @@ public class HeapSort {
 			large = left;
 		} else {
 			large = node;
-		}// end of if-else
+		} // end of if-else
 
 		if (right <= arrSize && input[right] > input[large]) {
 			large = right;
@@ -42,6 +42,7 @@ public class HeapSort {
 			maxHeap(input, i, size);
 		}// end of for
 
+		System.out.println("Heapify: " + Arrays.toString(input));
 		for (int i = size; i > 0; i--) {
 			swap(input, 0, i);
 			size--;

@@ -116,7 +116,7 @@ public class BinarySearchTree {
 
 		if (lIndex < bstArray.length) {
 			bstArray[lIndex] = value;
-			System.out.println(value + " inserted at Left index " + lIndex);
+			// System.out.println(value + " inserted at Left index " + lIndex);
 			return true;
 		}
 
@@ -128,7 +128,7 @@ public class BinarySearchTree {
 
 		if (rIndex < bstArray.length) {
 			bstArray[rIndex] = value;
-			System.out.println(value + " inserted at Right index " + rIndex);
+			// System.out.println(value + " inserted at Right index " + rIndex);
 			return true;
 		}
 
@@ -241,13 +241,17 @@ public class BinarySearchTree {
 
 	/**
 	 * Successor node is one which will replace the Array index that is been
-	 * deleted. To find successor node: 1. If the deleted node is leaf i.e. no
-	 * right or left child than simply delete it. 2. If the deleted node has a
+	 * deleted. To find successor node:
+	 * 1. If the deleted node is leaf i.e. no
+	 * right or left child than simply delete it.
+	 * 
+	 * 2. If the deleted node has a
 	 * left child, than search the highest value in the left sub-tree. The
 	 * highest value will be found in the right child of the Left Subtree. If no
 	 * right child of the left subtree than the left child of the node to be
-	 * deleted will be the highest value 3. If the left Subtree of the node to
-	 * be deleted does not exist than traverse the right subtree and identify
+	 * deleted will be the highest value.
+	 * 
+	 * 3. If the left Subtree of the node to be deleted does not exist than traverse the right subtree and identify
 	 * the highest element similarly as point 2.
 	 * 
 	 * this will handle all scenario of deletion: 1. Delete node is a leaf node
@@ -522,11 +526,11 @@ public class BinarySearchTree {
 	}
 
 	/**
-	 * Heap-ify Input Array
+	 * Heapify Input Array
 	 * 
 	 * @param arr
 	 */
-	public void heapify(int[] arr) {
+	public void maxHeapify(int[] arr) {
 		int size = arr.length - 1;
 		for (int i = size / 2; i >= 0; i--) {
 			siftUp(arr, i);
@@ -557,6 +561,137 @@ public class BinarySearchTree {
 		}
 	}
 
+	/**
+	 * 
+	 * To validate if a given tree is a valid BST.
+	 * 
+	 * The condition we need to check at each node is:
+	 * 
+	 * if the node is the left child of its parent, then it must be smaller than (or equal to) the parent and it must
+	 * pass down the value from its parent to its right subtree to make sure none of the nodes in that subtree is
+	 * greater than the parent
+	 * 
+	 * if the node is the right child of its parent, then it must be larger than the parent and it must pass down the
+	 * value from its parent to its left subtree to make sure none of the nodes in that subtree is lesser than the
+	 * parent.
+	 * 
+	 * @param index
+	 * @param min
+	 * @param max
+	 * @return
+	 */
+	private boolean isBinarySearchTree(int index, int min, int max) {
+		// Successful in Traversing Till Leaf Node
+		if (index < bstArray.length && bstArray[index] == Integer.MIN_VALUE)
+			return true;
+
+		// Fail to Satisfy BST Property => min < node < max
+		if (index > bstArray.length || bstArray[index] < min || bstArray[index] > max) {
+			return false;
+		}
+
+		// Ensure in the left Subtree, pass parent value to right so no value is greater than parent
+		// &&
+		// ensure in the right subtree, pass the value to left tree so no value is less than parent.
+		return isBinarySearchTree(2 * index, min, bstArray[index]) && isBinarySearchTree(2 * index + 1, bstArray[index], max);
+	}
+
+	/***
+	 * Returns the Size of a Binary Tree.
+	 * 
+	 * @param node
+	 * @return
+	 */
+	public int treeSize(int node) {
+
+		// If reaches a null nodes
+		if (node > bstArray.length || bstArray[node] == Integer.MIN_VALUE)
+			return 0;
+
+		// Size of Left + size of Right + size of Node
+		return treeSize(2 * node) + treeSize(2 * node + 1) + 1;
+	}
+
+	/***
+	 * Find if there exist a path in a binary tree whose sum of node values equals the give Sum value.
+	 * 
+	 * @param node
+	 * @param sum
+	 * @return
+	 */
+	public boolean pathsum(int node, int sum) {
+
+		// If reaches a null nodes
+		if ((node > bstArray.length || bstArray[node] == Integer.MIN_VALUE) && sum == 0) {
+			while ((node = node / 2) > 0) {
+				System.out.print(node + " (" + bstArray[node] + ")  ");
+			}
+
+			return true;
+		}
+
+		if ((node > bstArray.length || bstArray[node] == Integer.MIN_VALUE) && sum != 0) {
+			return false;
+		}
+
+		return (pathsum(2 * node, sum - (bstArray[node])) || pathsum(2 * node + 1, sum - (bstArray[node])));
+	}
+
+	/***
+	 * This function will find the common lowest ancestor for 2 node values.
+	 * It will return the parent index value.
+	 * This approach applies for a binary tree and not a binary search tree.
+	 * 
+	 * @param num1
+	 * @param num2
+	 * @param node
+	 * @return
+	 */
+	public int lowCommAncestorBT(int num1, int num2, int node) {
+		// break condition
+		if (node > bstArray.length || bstArray[node] == Integer.MIN_VALUE) {
+			return -1;
+		}
+
+		// Found the node for num1 or num2
+		if (bstArray[node] == num1 || bstArray[node] == num2) {
+			return node;
+		}
+
+		int left = lowCommAncestorBT(num1, num2, 2 * node);
+		int right = lowCommAncestorBT(num1, num2, 2 * node + 1);
+
+		// If both left and right are -1 than means value not found.
+		if (left == -1 && right == -1)
+			return -1;
+
+		// Value was found.
+		if (left != -1 && right != -1)
+			return node;
+
+		return left != -1 ? left : right;
+	}
+
+	private int lowestCommonAncestorBST(int num1, int num2, int node) {
+
+		if (node > bstArray.length || bstArray[node] == Integer.MIN_VALUE) {
+			return -1;
+		}
+		
+		if (bstArray[node] > Math.max(num1, num2))
+			return lowestCommonAncestorBST(num1, num2, 2 * node);
+		else if (bstArray[node] < Math.min(num1, num2))
+			return lowestCommonAncestorBST(num1, num2, 2 * node + 1);
+		else
+			return node;
+
+	}
+
+	/**
+	 * 
+	 * @param args
+	 * @throws NoSuchFieldException
+	 */
 	public static void main(String[] args) throws NoSuchFieldException {
 
 		// int[] inputArr = { 11, 6, 8, 19, 4, 10, 5, 17, 43, 49, 31, 17, 11, 8,
@@ -572,52 +707,79 @@ public class BinarySearchTree {
 			}
 		}
 
-		System.out.println("\nBinary Tree Array : " + Arrays.toString(tree.bstArray));
+		boolean test = tree.isBinarySearchTree(1, Integer.MIN_VALUE, Integer.MAX_VALUE);
 
-		tree.heapify(inputArr);
-		System.out.println(" After Heapify : " + Arrays.toString(inputArr));
+		if (test == true) {
+			System.out.println("Tree is a Binary Search Tree. Hence proceed further with the Operations......");
+			System.out.println("\nBinary Tree Array : " + Arrays.toString(tree.bstArray));
+			tree.maxHeapify(inputArr);
+			System.out.println(" After Heapify : " + Arrays.toString(inputArr));
 
-		System.out.println("\n----------------Properties of Binary Tree---------------\n");
-		System.out.println("\nHeight of Binary Tree: " + tree.height(1));
-		System.out.println("\nTotal number of Leaf Nodes : " + tree.countLeafNode(1));
-		System.out.println("\nWidth of the Binary Tree is : " + tree.treeWidth());
+			System.out.println("\n----------------Properties of Binary Tree---------------\n");
+			System.out.println("\nHeight of Binary Tree: " + tree.height(1));
+			System.out.println("\nSize of a Binary Tree: " + tree.treeSize(1));
+			System.out.println("\nPath exist with sum : " + tree.pathsum(1, 21));
+			System.out.println("\nTotal number of Leaf Nodes : " + tree.countLeafNode(1));
+			System.out.println("\nWidth of the Binary Tree is : " + tree.treeWidth());
 
-		System.out.println("\n\nDFS Traversal : In Order Traversal : ");
-		tree.inOrderTraversal(1);
+			System.out.println("\n lowest common ancestor of 10 & 43 " + tree.bstArray[tree.lowCommAncestorBT(10, 43, 1)]);
 
-		System.out.println("\n\nDFS Traversal : Pre Order Traversal : ");
-		tree.preOrderTraversal(1);
+			System.out.println("\n lowest common ancestor of 31 & 49 " + tree.bstArray[tree.lowCommAncestorBT(31, 49, 1)]);
 
-		System.out.println("\n\nDFS Traversal : Post Order Traversal : ");
-		tree.postOrderTraversal(1);
+			System.out.println("\n lowest common ancestor of 49 & 4 " + tree.bstArray[tree.lowCommAncestorBT(49, 4, 1)]);
 
-		System.out.println("\n\nBFS Traversal : Level Order Traversal : ");
-		tree.levelOrderTraversal(1);
+			System.out.println("\n\nDFS Traversal : In Order Traversal : ");
+			tree.inOrderTraversal(1);
 
-		System.out.println("\n\nTop View of the BST : ");
-		tree.printBSTTopView(1);
+			System.out.println("\n\nDFS Traversal : Pre Order Traversal : ");
+			tree.preOrderTraversal(1);
 
-		int key = 0;
-		Scanner scan = new Scanner(System.in);
-		while (key != -1) {
-			System.out.println("\n\nEnter -1 to exit........");
-			System.out.println("\n\n Search the Key to be deleted : ");
-			key = scan.nextInt();
+			System.out.println("\n\nDFS Traversal : Post Order Traversal : ");
+			tree.postOrderTraversal(1);
 
-			int kIndex = tree.search(key);
-
-			if (tree.bstArray[kIndex] != Integer.MIN_VALUE) {
-				System.out.println("Search Key found at array index : " + kIndex);
-				tree.printNodeDetail(kIndex);
-			} else {
-				System.out.println("Key not found");
-			}
-
-			boolean delete = tree.delete(key);
-			System.out.println("Delete Status : " + delete);
+			System.out.println("\n\nBFS Traversal : Level Order Traversal : ");
 			tree.levelOrderTraversal(1);
+
+			System.out.println("\n\nTop View of the BST : ");
+			tree.printBSTTopView(1);
+
+			System.out.println("\n lowest common ancestor of 10 & 43 " + tree.bstArray[tree.lowestCommonAncestorBST(10, 43, 1)]);
+
+			System.out.println("\n lowest common ancestor of 31 & 49 " + tree.bstArray[tree.lowestCommonAncestorBST(31, 49, 1)]);
+
+			System.out.println("\n lowest common ancestor of 49 & 4 " + tree.bstArray[tree.lowestCommonAncestorBST(49, 4, 1)]);
+
+			
+			int key = 0;
+			Scanner scan = new Scanner(System.in);
+			while (key != -1) {
+				System.out.println("\n\nEnter -1 to exit........");
+				System.out.println("\n\n Search the Key to be deleted : ");
+				key = scan.nextInt();
+
+				int kIndex = tree.search(key);
+
+				if (tree.bstArray[kIndex] != Integer.MIN_VALUE) {
+					System.out.println("Search Key found at array index : " + kIndex);
+					tree.printNodeDetail(kIndex);
+				} else {
+					System.out.println("Key not found");
+				}
+
+				boolean delete = tree.delete(key);
+
+				test = tree.isBinarySearchTree(1, Integer.MIN_VALUE, Integer.MAX_VALUE);
+				if (test == true) {
+					System.out.println("Delete Status : " + delete);
+					tree.levelOrderTraversal(1);
+				} else {
+					System.out.println("delete did not resulted in a correct BST. Hence Breaking....");
+				}
+			}
+			scan.close();
+		} else {
+			System.out.println("Tree is not a Binary Search Tree");
 		}
-		scan.close();
 
 	}
 

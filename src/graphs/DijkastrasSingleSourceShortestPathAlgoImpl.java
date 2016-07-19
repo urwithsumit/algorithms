@@ -45,8 +45,8 @@ public class DijkastrasSingleSourceShortestPathAlgoImpl {
 
 		@Override
 		public int compareTo(Node node) {
-			boolean flag = this.end > ((Node) node).end;
-			return flag ? -1 : 1;
+			boolean flag = this.wt > ((Node) node).wt;
+			return flag ? 1 : -1;
 		}
 	}
 
@@ -70,13 +70,14 @@ public class DijkastrasSingleSourceShortestPathAlgoImpl {
 	 * @param source
 	 */
 	public void dijakstra(int source) {
+		queue.add(source);
 		dist[source] = 0;
 		while (!queue.isEmpty()) {
-			int element = queue.poll();
-			PriorityQueue<Node> list = graph[element];
+			int qElement = queue.poll();
+			PriorityQueue<Node> list = graph[qElement];
 			for (Node node : list) {
-				if ((dist[element] + node.wt) < dist[node.end]) {
-					dist[node.end] = dist[element] + node.wt;
+				if ((dist[qElement] + node.wt) < dist[node.end]) {
+					dist[node.end] = dist[qElement] + node.wt;
 					queue.add(node.end); // Node to consider for next iteration
 				}
 			}
@@ -105,16 +106,15 @@ public class DijkastrasSingleSourceShortestPathAlgoImpl {
 			}
 
 			int source = scan.nextInt();
-
-			queue.add(source);
 			sol.dijakstra(source);
 
+			System.out.println("Shortest Distance Result using Dijkastra's Algorithm: ");
 			for (int j = 1; j <= N; j++) {
 				if (sol.dist[j] != 0) {
 					if (sol.dist[j] == sol.INFINITY) {
 						System.out.print(-1 + " ");
 					} else {
-						System.out.print(sol.dist[j] + " ");
+						System.out.println(source + " -> " + j + " is " + sol.dist[j] + " ");
 					}
 				}
 			}
