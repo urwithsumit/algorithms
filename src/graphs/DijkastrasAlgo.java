@@ -20,7 +20,7 @@ import java.util.Scanner;
  * @author sumitkumar
  * 
  */
-public class DijkastrasSingleSourceShortestPathAlgoImpl {
+public class DijkastrasAlgo {
 	private PriorityQueue<Node>[] graph;
 	private int[] dist; // holds the calculated distances
 	private static Queue<Integer> queue; // holds the vertex that are adjacent
@@ -51,7 +51,7 @@ public class DijkastrasSingleSourceShortestPathAlgoImpl {
 	}
 
 	@SuppressWarnings("unchecked")
-	public DijkastrasSingleSourceShortestPathAlgoImpl(int vertex) {
+	public DijkastrasAlgo(int vertex) {
 		queue = new LinkedList<Integer>();
 
 		this.graph = new PriorityQueue[vertex + 1];
@@ -99,7 +99,7 @@ public class DijkastrasSingleSourceShortestPathAlgoImpl {
 			int N = scan.nextInt();
 			int M = scan.nextInt();
 
-			DijkastrasSingleSourceShortestPathAlgoImpl sol = new DijkastrasSingleSourceShortestPathAlgoImpl(N);
+			DijkastrasAlgo sol = new DijkastrasAlgo(N);
 
 			for (int j = 0; j < M; j++) {
 				sol.addEdge(scan.nextInt(), scan.nextInt(), scan.nextInt());
