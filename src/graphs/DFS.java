@@ -5,13 +5,14 @@ import java.util.LinkedList;
 /**
  * 
  * @author sumitkumar
- *
+ * 
  */
 public class DFS {
 
 	private LinkedList<Integer>[] graph;
 	private boolean[] visited;
 
+	@SuppressWarnings("unchecked")
 	public DFS(int n) {
 		graph = new LinkedList[n + 1];
 		visited = new boolean[n + 1];
