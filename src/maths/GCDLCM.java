@@ -27,7 +27,7 @@ public class GCDLCM {
 	
 	public static int LCM(int a, int b)
 	{
-	   return b*a/gcd(a,b);
+	   return (b*a)/gcd(a,b);
 	}
 
 	public static void main(String[] args) {
