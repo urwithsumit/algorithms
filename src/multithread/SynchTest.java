@@ -17,16 +17,12 @@ public class SynchTest extends Thread {
 
 	@Override
 	public void run() {
-
 		synchronized (buffer) {
-
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < 1000; i++) {
 				buffer.append(letter);
 			}
-
 			buffer.append("\n");
 		}
-
 	}
 
 	public static void main(String[] args) throws InterruptedException {
@@ -40,11 +36,11 @@ public class SynchTest extends Thread {
 		t2.start();
 		t3.start();
 
-		t3.join(); // This will stop the intermittent behavior and will ensure the main thread wait for the last thread
+		t1.join(); // This will stop the intermittent behavior and will ensure the main thread wait for the threads
 					// to complete before terminations
+					// Join on either of the threads gives the desired result
 
 		System.out.println(buffer.toString());
-
 	}
 
 }
