@@ -27,7 +27,7 @@ public class QuickSort {
 				lo++;
 			}
 			while (arr[hi] > pivot) {
-				hi--;
+				hi--;	
 			}
 
 			if (lo <= hi) {
