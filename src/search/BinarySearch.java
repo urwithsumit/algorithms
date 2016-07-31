@@ -1,8 +1,14 @@
 package search;
 
+/**
+ * O(Log n)
+ * @author sumitkumar
+ *
+ * @param <T>
+ */
 public class BinarySearch<T extends Comparable<T>> {
 
-	static Integer[] array = { 0, 1, 2, 3, 4, 5, 23, 33, 35, 67, 89, 100 };
+	static Integer[] sortedArr = { 0, 1, 2, 3, 4, 5, 23, 33, 35, 67, 89, 100 };
 
 	private int binarySearch(T[] array, int lo, int hi, T key) {
 
@@ -25,7 +31,7 @@ public class BinarySearch<T extends Comparable<T>> {
 
 	public static void main(String[] args) {
 		BinarySearch<Integer> search = new BinarySearch<Integer>();
-		int index = search.binarySearch(array, 0, array.length, 100);
+		int index = search.binarySearch(sortedArr, 0, sortedArr.length, 100);
 		if (index > -1) {
 			System.out.println("Found at index : " + index);
 		} else {
