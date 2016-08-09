@@ -7,13 +7,13 @@ import java.util.LinkedList;
  * @author sumitkumar
  * 
  */
-public class DFS {
+public class GraphOperationsAdjList {
 
 	private LinkedList<Integer>[] graph;
 	private boolean[] visited;
 
 	@SuppressWarnings("unchecked")
-	public DFS(int n) {
+	public GraphOperationsAdjList(int n) {
 		graph = new LinkedList[n + 1];
 		visited = new boolean[n + 1];
 		for (int i = 0; i <= n; i++) {
@@ -37,7 +37,7 @@ public class DFS {
 	}
 
 	public static void main(String[] args) {
-		DFS g = new DFS(4);
+		GraphOperationsAdjList g = new GraphOperationsAdjList(4);
 
 		g.addEdge(0, 1);
 		g.addEdge(0, 2);

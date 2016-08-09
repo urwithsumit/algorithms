@@ -33,6 +33,7 @@ class ThreadA extends Thread {
 			for (int i = 0; i < 10; i++) {
 				buf.append(i).append(" ");
 			}
+
 			notify();
 		}
 	}

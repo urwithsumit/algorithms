@@ -294,7 +294,7 @@ public class BinarySearchTree {
 		return successor;
 	}
 
-	// Delete lead node
+	// Delete leaf node
 	// Delete child with one node
 	// Delete child with 2 nodes
 	private boolean delete(int key) throws NoSuchFieldException {
