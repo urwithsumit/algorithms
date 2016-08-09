@@ -2,6 +2,7 @@ package multithread;
 
 /**
  * Question from Kathy Sierra - Java 5
+ * Maintain an order between 3 threads so that threads produces a, b, c for 1000 times
  * 
  * @author sumitkumar
  * 
