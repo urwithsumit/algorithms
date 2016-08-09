@@ -11,4 +11,13 @@ public class LinkNode<T> {
 	public T data;
 	public LinkNode<T> next;
 	public LinkNode<T> previous;
+
+	public LinkNode() {
+
+	}
+
+	public LinkNode(T s) {
+		data = s;
+		next = previous = null;
+	}
 }
