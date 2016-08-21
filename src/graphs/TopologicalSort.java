@@ -1,13 +1,17 @@
 package graphs;
 
-///INCOMPLETE PROGRAM
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-// This is the text editor interface. 
-// Anything you type or change here will be seen by the other person in real time.
-
+/**
+ * Topological using DFS.
+ * 
+ * https://en.wikipedia.org/wiki/Topological_sorting
+ * 
+ * @author sumitkumar
+ * 
+ */
 class TopologicalSort {
 
 	private char[] visited; // 'u' = unvisited, 'v' = visited, 'p'= processing
@@ -32,7 +36,8 @@ class TopologicalSort {
 	}
 
 	public void visit(int node) {
-		// If a node is in processing state, means it is not an acyclic graph. Topological sort not possible.
+		// If a node is in processing state, means it is not an acyclic graph. Topological sort not possible in this
+		// case.
 		if (visited[node] == 'p') {
 			throw new IllegalArgumentException("Not a Directed Acyclic Graph");
 		}
