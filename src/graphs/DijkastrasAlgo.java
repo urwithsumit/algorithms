@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 /**
  * Dijasktra's Algorithm for Single Source Shortest Path.
+ * Time Complexity : O((|E|+|V|)\log |V|)
  * Sample input:
  * 
  * 1
