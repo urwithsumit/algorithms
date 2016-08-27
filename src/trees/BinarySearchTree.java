@@ -72,27 +72,27 @@ public class BinarySearchTree {
 
 		int idepth = getDepth(index);
 		while (!queue.isEmpty()) {
-			int node = queue.poll();
-			if (node < bstArray.length) {
+			int nodeIdx = queue.poll();
+			if (nodeIdx < bstArray.length) {
 
-				int cDepth = getDepth(node);
+				int cDepth = getDepth(nodeIdx);
 				// When Level of node changes than print in new line
 				if (cDepth != idepth) {
 					System.out.println(" ");
 					idepth = cDepth;
 				}
 
-				if ((bstArray[node] == Integer.MIN_VALUE)) {
-					System.out.print(" (" + node + ") " + " * ");
+				if ((bstArray[nodeIdx] == Integer.MIN_VALUE)) {
+					System.out.print(" (" + nodeIdx + ") " + " * ");
 				} else {
-					if (keyCounter.get(bstArray[node]) != null) {
-						System.out.print(" (" + node + ") " + bstArray[node] + ":" + (keyCounter.get(bstArray[node])));
+					if (keyCounter.get(bstArray[nodeIdx]) != null) {
+						System.out.print(" (" + nodeIdx + ") " + bstArray[nodeIdx] + ":" + (keyCounter.get(bstArray[nodeIdx])));
 					} else {
-						System.out.print(" (" + node + ") " + bstArray[node] + " ");
+						System.out.print(" (" + nodeIdx + ") " + bstArray[nodeIdx] + " ");
 					}
 				}
-				queue.add(2 * node);
-				queue.add(2 * node + 1);
+				queue.add(2 * nodeIdx);
+				queue.add(2 * nodeIdx + 1);
 			}
 		}
 	}
@@ -509,13 +509,13 @@ public class BinarySearchTree {
 		}
 
 		if (lFlag) {
-			printBSTTopView(2 * index, true, false);
+			printBSTTopView(2 * index, lFlag, rFlag);
 		}
 
 		System.out.print(bstArray[index] + " ");
 
 		if (rFlag) {
-			printBSTTopView(2 * index + 1, false, true);
+			printBSTTopView(2 * index + 1, lFlag, rFlag);
 		}
 
 	}

@@ -57,7 +57,7 @@ public class PrimsAlgoMST {
 
 		@Override
 		public int compareTo(Node node) {
-			boolean flag = this.wt > ((Node) node).wt;
+			boolean flag = this.wt > node.wt;
 			return flag ? 1 : -1; // return in the increasing order of weight
 		}
 

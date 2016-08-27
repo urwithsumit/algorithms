@@ -111,7 +111,7 @@ public class KruskalMSTAlgo {
 
 		@Override
 		public int compareTo(Edge node) {
-			return (this.wt > ((Edge) node).wt) ? 1 : -1; // V. IMP: return in the increasing order of weight
+			return (this.wt > node.wt) ? 1 : -1; // V. IMP: return in the increasing order of weight
 		}
 
 		public String toString() {
@@ -119,7 +119,7 @@ public class KruskalMSTAlgo {
 		}
 	}
 
-	public KruskalMSTAlgo(int vertex) {
+	public KruskalMSTAlgo() {
 		this.queue = new PriorityQueue<Edge>();
 		map = new HashMap<Integer, Node>();
 	}
@@ -170,7 +170,7 @@ public class KruskalMSTAlgo {
 		int N = scan.nextInt(); // vertices
 		int M = scan.nextInt(); // edges
 
-		KruskalMSTAlgo sol = new KruskalMSTAlgo(N);
+		KruskalMSTAlgo sol = new KruskalMSTAlgo();
 
 		for (int j = 0; j < M; j++) {
 			sol.addEdge(scan.nextInt(), scan.nextInt(), scan.nextInt());

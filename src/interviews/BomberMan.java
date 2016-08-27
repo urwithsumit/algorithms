@@ -1,4 +1,4 @@
-package arrays;
+package interviews;
 
 /**
  * Google interview Question - Aug 2016

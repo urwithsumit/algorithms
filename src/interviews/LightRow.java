@@ -1,9 +1,10 @@
-package arrays;
+package interviews;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 /**
+ * Zullily Interview Question
  * Switches are against Columns. Given the number of times switches can be
  * flipped, find the maximum number of rows that will have no lights off.
  * 

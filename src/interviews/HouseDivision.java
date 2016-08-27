@@ -1,9 +1,11 @@
-package arrays;
+package interviews;
 
 import java.io.*;
 import java.util.*;
 
 /**
+ * Zullily interview question.
+ * 
  * A and B want to divide a property. x = x coordinate of property y = y
  * coordinate of property rent = rent from the property
  * 

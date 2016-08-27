@@ -17,17 +17,24 @@ public class QuickSort {
 		}
 	}
 
+	/**
+	 * @param arr
+	 * @param lo
+	 * @param hi
+	 * @return
+	 */
 	private int partition(int[] arr, int lo, int hi) {
+		int pivot = (hi + lo) / 2;
 
-		int pivot = arr[(hi + lo) / 2];
+		int pivotValue = arr[pivot];
 
 		while (lo <= hi) {
 
-			while (arr[lo] < pivot) {
+			while (arr[lo] < pivotValue) {
 				lo++;
 			}
-			while (arr[hi] > pivot) {
-				hi--;	
+			while (arr[hi] > pivotValue) {
+				hi--;
 			}
 
 			if (lo <= hi) {
